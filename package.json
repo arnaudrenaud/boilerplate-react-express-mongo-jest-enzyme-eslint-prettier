@@ -5,11 +5,16 @@
   "author": "Arnaud Renaud <arnaud.renaud@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "lint": "yarn eslint --ignore-path .gitignore .",
+    "postinstall": "yarn --cwd client install",
+    "build": "yarn --cwd client build",
+    "lint": "yarn eslint --ignore-path **/.gitignore .",
+    "test-client": "cross-env CI=true yarn --cwd client test",
+    "test-client:watch": "yarn --cwd client test",
+    "test": "yarn lint && yarn test-client"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && yarn test"
     }
   },
   "lint-staged": {
@@ -20,6 +25,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
+    "cross-env": "^5.2.0",
     "eslint": "5.6.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.1.0",
