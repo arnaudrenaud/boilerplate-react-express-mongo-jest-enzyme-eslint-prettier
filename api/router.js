@@ -1,6 +1,9 @@
 const router = require('express').Router();
 
-router.get('/', (req, res) => res.json({ text: 'Successfully hit API root' }));
+const items = require('./items/router');
+const { ITEMS_ROOT_PATH } = require('./items/router');
+
+router.use(ITEMS_ROOT_PATH, items);
 
 module.exports = router;
 module.exports.API_ROOT_PATH = '/api';

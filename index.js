@@ -1,4 +1,5 @@
 const app = require('./app');
+require('./setupDatabase');
 
 const port = process.env.PORT || 3001;
 // eslint-disable-next-line no-console
